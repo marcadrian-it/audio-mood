@@ -34,7 +34,7 @@ To visit the website, click on the logo.
 - [Express](https://expressjs.com/)
 - [PlanetScale](https://planetscale.com/)
 - [Docker](https://www.docker.com/)
-- [Multer]
+- [Multer](https://www.npmjs.com/package/multer)
 
 ## Frontend
 
