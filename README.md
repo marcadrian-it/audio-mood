@@ -18,11 +18,29 @@ To visit the website, click on the logo.
 
 # Stack
 
+- [Typescript](https://www.typescriptlang.org/)
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [PlanetScale](https://planetscale.com/)
+- [Vercel](https://vercel.com/)
+
 ## Shared
+
+- [Typescript](https://www.typescriptlang.org/)
 
 ## Backend
 
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [PlanetScale](https://planetscale.com/)
+- [Docker](https://www.docker.com/)
+- [Multer]
+
 ## Frontend
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind](https://tailwindcss.com/)
 
 ## Instructions
 
