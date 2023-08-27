@@ -45,3 +45,5 @@ To visit the website, click on the logo.
 ## Instructions
 
 ## Preview
+
+https://marcadrian.eu/images/gallery/thumbs/08.jpg
