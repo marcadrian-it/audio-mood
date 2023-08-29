@@ -46,4 +46,4 @@ To visit the website, click on the logo.
 
 ## Preview
 
-https://raw.githubusercontent.com/marcadrian-it/audio-mood/master/preview.jpg
+![Preview](https://raw.githubusercontent.com/marcadrian-it/audio-mood/master/preview.jpg)
