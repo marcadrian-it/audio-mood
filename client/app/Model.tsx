@@ -1,3 +1,4 @@
+'use client';
 import { Clone, useGLTF } from '@react-three/drei';
 
 interface ModelProps {
