@@ -7,6 +7,7 @@ export default function Home() {
     null
   );
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [isRecording, setIsRecording] = useState(false);
   const [timestamps, setTimestamps] = useState<
     { startTime: number; endTime: number; sentence: string }[]
   >([]);
@@ -38,12 +39,14 @@ export default function Home() {
     setAudioChunks([]);
     if (mediaRecorder) {
       mediaRecorder.start();
+      setIsRecording(true);
     }
   };
 
   const stopRecording = () => {
     if (mediaRecorder) {
       mediaRecorder.stop();
+      setIsRecording(false);
     }
   };
 
@@ -100,13 +103,15 @@ export default function Home() {
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <button
           onClick={startRecording}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          disabled={isRecording}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:bg-red-600 disabled:cursor-not-allowed"
         >
           Start Recording
         </button>
         <button
           onClick={stopRecording}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          disabled={!isRecording}
+          className="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:hover:bg-blue-500 disabled:cursor-not-allowed"
         >
           Stop Recording
         </button>
