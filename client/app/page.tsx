@@ -1,11 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import Experience from './Experience';
+import React from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
     null
   );
+
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [timestamps, setTimestamps] = useState<
@@ -99,7 +104,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex w-screen h-screen flex-col items-center justify-between p-24 bg-black">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <button
           onClick={startRecording}
@@ -122,11 +127,35 @@ export default function Home() {
           Transcribe Audio
         </button>
       </div>
-      <div className="text-5xl text-black font-extrabold flex flex-col items-center gap-2">
+      <div className="flex w-[1080px] h-[720px]">
+        <Canvas
+          className="w-1/2"
+          camera={{
+            fov: 45,
+            near: 0.1,
+            far: 200,
+            position: [-4, 3, 6],
+          }}
+        >
+          <Experience />
+        </Canvas>
+        <div className="w-1/2 flex flex-col justify-center items-start text-white space-y-4 p-8">
+          <h2 className="text-5xl font-semibold">
+            Reflect like Marcus Aurelius
+          </h2>
+          <p className="text-2xl">Your daily audio mood journal.</p>
+          <Link href="/journal">
+            <button className="text-lg bg-blue-500 px-3 py-2 rounded-xl">
+              Enter journal
+            </button>
+          </Link>
+        </div>
+      </div>
+      <div className="text-5xl text-white font-extrabold flex flex-col items-center gap-2">
         {timestamps.map((item, index) => (
           <p key={index}>{item.sentence}</p>
         ))}
       </div>
-    </main>
+    </div>
   );
 }
