@@ -2,6 +2,10 @@ import { OpenAI } from "langchain/llms/openai";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { z } from "zod";
 import { PromptTemplate } from "langchain/prompts";
+import { Document } from "langchain/document";
+import { loadQARefineChain } from "langchain/chains";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 const getPrompt = async (content) => {
   const formattedInstructions = parser.getFormatInstructions();
@@ -58,4 +62,26 @@ export const analyze = async (content) => {
   } catch (error: any) {
     console.log(error);
   }
+};
+
+export const qa = async (question, entries) => {
+  const docs = entries.map((entry) => {
+    return new Document({
+      pageContent: entry.content,
+      metadata: { id: entry.id, createdAt: entry.createdAt },
+    });
+  });
+
+  const embeddings = new OpenAIEmbeddings();
+  const model = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo-1106" });
+  const chain = loadQARefineChain(model);
+  const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
+  const relevantDocs = await store.similaritySearch(question);
+
+  const res = await chain.call({
+    input_documents: relevantDocs,
+    question,
+  });
+
+  return res.output_text;
 };
