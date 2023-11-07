@@ -1,6 +1,6 @@
 // import { useEffect, useState } from 'react';
 
-import Experience from './Experience';
+import Experience from '../components/Experience';
 import React from 'react';
 import Link from 'next/link';
 import { auth } from '@clerk/nextjs';
@@ -106,7 +106,7 @@ export default async function Home() {
   // };
 
   return (
-    <div className="flex w-screen h-screen flex-col items-center justify-between p-24 bg-black">
+    <div className="flex w-screen h-screen flex-col items-center justify-between p-24 bg-[#150c28]">
       {/* <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <button
           onClick={startRecording}

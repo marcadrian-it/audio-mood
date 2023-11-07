@@ -33,7 +33,7 @@ model JournalEntry {
 
   analysis Analysis?
 
-  @@index([userId])
+  @@unique([userId, id])
 }
 
 model Analysis {
@@ -42,12 +42,14 @@ model Analysis {
   updatedAt DateTime @updatedAt
 
   entryId String
-  entry JournalEntry @relation(fields: [entryId], references: [id])
+  entry JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
+  sentimentScore Int
   mood String
   summary String @db.Text
   color String
   negative Boolean
+  subject String
 
   @@unique([entryId])
 }
