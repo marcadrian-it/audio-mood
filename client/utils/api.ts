@@ -67,3 +67,32 @@ export const createNewEntry = async () => {
     };
   }
 };
+
+export const askQuestion = async (question: string) => {
+  try {
+    const res = await fetch(
+      new Request(createURL("/api/question"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question }),
+      })
+    );
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return { data: data.data, error: null, code: res.status, messageForUI: "" };
+  } catch (error: any) {
+    console.error("An error occurred while creating a new entry:", error);
+    return {
+      data: null,
+      error: error.message,
+      code: error.status || 500,
+      messageForUI: "An error occurred while creating a new entry.",
+    };
+  }
+};
