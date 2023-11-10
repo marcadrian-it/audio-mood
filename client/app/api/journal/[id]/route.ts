@@ -1,10 +1,16 @@
 import { analyze } from "@/utils/ai";
 import { getUserByClerkID } from "@/utils/auth";
 import { prisma } from "@/utils/db";
-
 import { NextResponse } from "next/server";
 
-export const PATCH = async (request: Request, { params }) => {
+interface Params {
+  id: string;
+}
+
+export const PATCH = async (
+  request: Request,
+  { params }: { params: Params }
+) => {
   const { content } = await request.json();
   const user = await getUserByClerkID();
   const updatedEntry = await prisma.journalEntry.update({
@@ -31,6 +37,7 @@ export const PATCH = async (request: Request, { params }) => {
       entryId: updatedEntry.id,
     },
     create: {
+      userId: user.id,
       entryId: updatedEntry.id,
       ...analysis,
       color: colorString,

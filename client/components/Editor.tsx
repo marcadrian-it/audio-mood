@@ -4,15 +4,24 @@ import { useState } from "react";
 import { useAutosave } from "react-autosave";
 import Spinner from "./Spinner";
 
+interface Analysis {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  entryId: string;
+  userId: string;
+  sentimentScore: number | null;
+  mood: string | null;
+  summary: string | null;
+  color: string | null;
+  negative: boolean | null;
+  subject: string | null;
+}
+
 interface Entry {
   id: string;
   content: string;
-  analysis?: {
-    color: string;
-    subject: string;
-    mood: string;
-    negative: boolean;
-  };
+  analysis?: Analysis | null;
 }
 
 interface EditorProps {
