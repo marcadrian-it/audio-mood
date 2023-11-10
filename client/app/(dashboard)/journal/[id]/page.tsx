@@ -2,7 +2,11 @@ import Editor from "@/components/Editor";
 import { getUserByClerkID } from "@/utils/auth";
 import { prisma } from "@/utils/db";
 
-const getEntry = async (id) => {
+interface Params {
+  id: string;
+}
+
+const getEntry = async (id: string) => {
   const user = await getUserByClerkID();
   const entry = await prisma.journalEntry.findUnique({
     where: {
@@ -19,12 +23,12 @@ const getEntry = async (id) => {
   return entry;
 };
 
-const JournalEditorPage = async ({ params }) => {
+const JournalEditorPage = async ({ params }: { params: Params }) => {
   const entry = await getEntry(params.id);
 
   return (
     <div className="w-full h-full">
-      <Editor entry={entry} />
+      {entry ? <Editor entry={entry} /> : <div>Entry not found</div>}
     </div>
   );
 };
