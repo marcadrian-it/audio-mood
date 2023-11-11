@@ -57,8 +57,8 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
   res.status(200).send(body);
 });
 
-const server = app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const server = app.listen(3010, () => {
+  console.log('Server is running on port 3010');
 });
 
 server.timeout = 180000;

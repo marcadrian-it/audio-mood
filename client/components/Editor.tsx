@@ -3,6 +3,7 @@ import { updateEntry } from "@/utils/api";
 import { useState } from "react";
 import { useAutosave } from "react-autosave";
 import Spinner from "./Spinner";
+import Recorder from "./Recorder";
 
 interface Analysis {
   id: string;
@@ -68,8 +69,9 @@ const Editor = ({ entry }: EditorProps) => {
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full h-full text-xl p-8 text-black"
+          className="w-full h-full text-4xl p-8 font-extrabold text-black"
         />
+        <Recorder setText={setText} />
       </div>
       <div className="border-l border-black/5">
         <div
