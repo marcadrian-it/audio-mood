@@ -13,9 +13,10 @@ const exec = util.promisify(execCb);
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const paths = {
-  exec: path.resolve(__dirname, './whisper.cpp/main'),
-  model: path.resolve(__dirname, './whisper.cpp/models/ggml-tiny.en.bin'),
+  exec: path.join(__dirname, './whisper.cpp/main'),
+  model: path.join(__dirname, './whisper.cpp/models/ggml-tiny.en.bin'),
 };
+console.log(process.cwd());
 const command = `${paths.exec} -m ${paths.model} -f output.wav -otxt -of output`;
 
 app.use(cors());
