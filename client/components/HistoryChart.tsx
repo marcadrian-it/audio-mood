@@ -1,16 +1,10 @@
 "use client";
 
+import { formatDate } from "@/utils/formatDate";
 import { ResponsiveContainer, Line, XAxis, Tooltip, LineChart } from "recharts";
 
 const CustomTooltip = ({ payload, label, active }) => {
-  const dateLabel = new Date(label).toLocaleString("en-GB", {
-    weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  });
+  const dateLabel = formatDate(label);
 
   if (active) {
     const analysis = payload[0].payload;
