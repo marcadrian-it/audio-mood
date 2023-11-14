@@ -16,7 +16,6 @@ const paths = {
   exec: path.join(__dirname, './whisper.cpp/main'),
   model: path.join(__dirname, './whisper.cpp/models/ggml-tiny.en.bin'),
 };
-console.log(process.cwd());
 const command = `${paths.exec} -m ${paths.model} -f output.wav -otxt -of output`;
 
 app.use(cors());
@@ -63,3 +62,11 @@ const server = app.listen(3010, () => {
 });
 
 server.timeout = 180000;
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received. Closing HTTP server.');
+  server.close(() => {
+    console.log('HTTP server closed.');
+    process.exit(0);
+  });
+});
