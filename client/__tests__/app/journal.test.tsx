@@ -58,7 +58,7 @@ const mockEntries = [
       entryId: "entry_1",
       summary: "Summary 1",
       mood: "Mood 1",
-      color: "Color 1",
+      color: JSON.stringify(["#FFFF00", "#00FFFF", "#FF00FF"]),
     },
   },
   {
@@ -75,7 +75,7 @@ const mockEntries = [
       entryId: "entry_2",
       summary: "Summary 2",
       mood: "Mood 2",
-      color: "Color 2",
+      color: JSON.stringify(["#FF0000", "#00FF00", "#0000FF"]),
     },
   },
 ];
