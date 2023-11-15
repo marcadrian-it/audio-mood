@@ -1,25 +1,36 @@
-# .github/workflows/client-tests.yml
-
-name: Run Client Tests
-
+name: client-unit-tests
 on:
   push:
+    branches:
+      - master
     paths:
       - 'client/**'
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
   workflow_dispatch:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Test
+
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, macos-latest, windows-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.runs-on }}
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set Node.js 20.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20.x
 
       - name: Install dependencies
         run: cd client && npm ci
