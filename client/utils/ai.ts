@@ -7,7 +7,27 @@ import { loadQARefineChain } from "langchain/chains";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
-const getPrompt = async (content) => {
+interface Entry {
+  id: string;
+  createdAt: Date;
+  content: string;
+}
+
+interface DocumentMetadata {
+  id: string;
+  createdAt: Date;
+}
+
+interface AnalyzeResult {
+  sentimentScore: number;
+  mood: string;
+  summary: string;
+  subject: string;
+  negative: boolean;
+  color: string[];
+}
+
+const getPrompt = async (content: string): Promise<string> => {
   const formattedInstructions = parser.getFormatInstructions();
 
   const prompt = new PromptTemplate({
@@ -51,7 +71,9 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 );
 
-export const analyze = async (content) => {
+export const analyze = async (
+  content: string
+): Promise<AnalyzeResult | undefined> => {
   const input = await getPrompt(content);
   const model = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo-1106" });
 
@@ -64,7 +86,10 @@ export const analyze = async (content) => {
   }
 };
 
-export const qa = async (question, entries) => {
+export const qa = async (
+  question: string,
+  entries: Entry[]
+): Promise<string> => {
   const docs = entries.map((entry) => {
     return new Document({
       pageContent: entry.content,

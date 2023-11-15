@@ -11,7 +11,7 @@ const NewEntryCard = () => {
   };
   return (
     <div
-      className="cursor-pointer overflow-hidden rounded-lg bg-zinc-200"
+      className="cursor-pointer overflow-hidden rounded-lg bg-zinc-200 hover:bg-[#98989a] ease-in-out duration-300"
       onClick={handleOnClick}
     >
       <div className="px-4 py-5 sm:p-6">

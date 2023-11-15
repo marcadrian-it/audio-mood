@@ -1,10 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
-import JournalIdPage from "../app/(dashboard)/journal/[id]/page";
+import JournalIdPage from "@/app/(dashboard)/journal/[id]/page";
+
+vi.mock("@/components/Recorder", () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return <div>Mock Recorder</div>;
+    },
+  };
+});
 
 // Create a mock for auth and prisma
 const mocks = vi.hoisted(() => {
   return {
+    getUserMedia: vi.fn(),
     auth: vi.fn(),
     prisma: {
       journalEntry: {

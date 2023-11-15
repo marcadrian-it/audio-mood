@@ -19,14 +19,18 @@ const EntryCard = ({ entry }: EntryCardProps) => {
   const date = formatDate(entry.createdAt);
   let colorArray = ["#ffffff", "#ffffff"];
   if (entry?.analysis?.color) {
-    colorArray = JSON.parse(entry.analysis.color);
+    try {
+      colorArray = JSON.parse(entry.analysis.color);
+    } catch (error) {
+      console.error("Invalid color data:", entry.analysis.color);
+    }
   }
   const gradient = `radial-gradient(circle, ${colorArray[0]}, ${colorArray[1]}, white)`;
 
   return (
     <div
       data-testid="entry-card"
-      className={`overflow-hidden rounded-lg shadow-xl text-black font-semibold relative border-[6px] border-blue-500/40 h-64`}
+      className={`hover:border-[8px] hover:border-blue-600/70 overflow-hidden rounded-lg shadow-xl text-black font-semibold relative border-[6px] border-blue-500/40 h-64 duration-300 ease-in-out`}
       style={{ background: `${gradient}` }}
     >
       <div className="relative z-10">
