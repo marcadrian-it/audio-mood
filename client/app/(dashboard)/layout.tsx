@@ -14,7 +14,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
-    <div className="h-screen w-screen relative text-white bg-[#0a0614]">
+    <div className="min-h-screen w-screen relative text-white bg-[#0a0614]">
       <aside className="absolute w-[200px] top-0 left-0 h-full border-r border-white/10">
         <div>Mood</div>
         <ul>
@@ -31,7 +31,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <UserButton />
           </div>
         </header>
-        <div className="h-[calc(100vh-60px)]">{children}</div>
+
+        <div className="overflow-hidden h-[calc(100vh-60px)]">{children}</div>
       </div>
     </div>
   );

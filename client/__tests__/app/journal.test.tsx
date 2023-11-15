@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
-import JournalPage from "../app/(dashboard)/journal/page";
+import JournalPage from "../../app/(dashboard)/journal/page";
 
 // Create a mock for auth and prisma
 const mocks = vi.hoisted(() => {

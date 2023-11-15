@@ -71,7 +71,6 @@ const Editor = ({ entry }: EditorProps) => {
           onChange={(e) => setText(e.target.value)}
           className="w-full h-full text-4xl p-8 font-extrabold text-black"
         />
-        <Recorder setText={setText} />
       </div>
       <div className="border-l border-black/5">
         <div
@@ -88,8 +87,20 @@ const Editor = ({ entry }: EditorProps) => {
             </li>
 
             <li className="py-4 px-8 flex items-center justify-between">
+              <div className="text-xl font-semibold">Summary</div>
+              <div className="text-xl">{currentEntry?.analysis?.summary}</div>
+            </li>
+
+            <li className="py-4 px-8 flex items-center justify-between">
               <div className="text-xl font-semibold">Mood</div>
               <div className="text-xl">{currentEntry?.analysis?.mood}</div>
+            </li>
+
+            <li className="py-4 px-8 flex items-center justify-between">
+              <div className="text-xl font-semibold">Sentiment Score</div>
+              <div className="text-xl">
+                {currentEntry?.analysis?.sentimentScore}
+              </div>
             </li>
 
             <li className="py-4 px-8 flex items-center justify-between">
@@ -98,6 +109,10 @@ const Editor = ({ entry }: EditorProps) => {
                 {currentEntry?.analysis?.negative ? "True" : "False"}
               </div>
             </li>
+            <li className="py-4 px-8 flex items-center justify-between">
+              <Recorder setText={setText} />
+            </li>
+
             <li className="py-4 px-8 flex items-center justify-between">
               <button
                 type="button"
