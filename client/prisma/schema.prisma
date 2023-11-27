@@ -31,7 +31,7 @@ model JournalEntry {
   userId String
   user User @relation(fields: [userId], references: [id])
 
-  content String
+  content String @db.Text
 
   analysis Analysis?
 

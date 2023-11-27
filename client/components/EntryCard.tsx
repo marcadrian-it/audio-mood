@@ -1,8 +1,8 @@
 import { formatDate } from "@/utils/formatDate";
 interface Analysis {
-  color: string;
-  summary: string;
-  mood: string;
+  color: string | null;
+  summary: string | null;
+  mood: string | null;
 }
 
 interface Entry {
