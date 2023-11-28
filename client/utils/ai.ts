@@ -53,11 +53,7 @@ const parser = StructuredOutputParser.fromZodSchema(
 );
 
 const getPrompt = async (content: string): Promise<string> => {
-  console.log("Start getPrompt");
-  console.log("Content:", content);
-
   const formattedInstructions = parser.getFormatInstructions();
-  console.log("Formatted instructions:", formattedInstructions);
 
   const prompt = new PromptTemplate({
     template:
@@ -71,31 +67,22 @@ const getPrompt = async (content: string): Promise<string> => {
   const input = await prompt.format({
     entry: content,
   });
-  console.log("Input:", input);
 
-  console.log("End getPrompt");
   return input;
 };
 
 export const analyze = async (
   content: string
 ): Promise<AnalyzeResult | undefined> => {
-  console.log("Start analyze");
-  console.log("Content:", content);
-
   const input = await getPrompt(content);
-  console.log("Input:", input);
 
   const model = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo-1106" });
 
   const result = await model.call(input);
-  console.log("Result:", result);
 
   try {
     const parsedResult = parser.parse(result);
-    console.log("Parsed result:", parsedResult);
 
-    console.log("End analyze");
     return parsedResult;
   } catch (error: any) {
     console.log("Error during parsing:", error);
