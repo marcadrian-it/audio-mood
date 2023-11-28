@@ -1,5 +1,5 @@
-'use client';
-import { Clone, useGLTF } from '@react-three/drei';
+"use client";
+import { Clone, useGLTF } from "@react-three/drei";
 
 interface ModelProps {
   scale: number;
@@ -7,7 +7,7 @@ interface ModelProps {
 
 export default function Model({ scale }: ModelProps) {
   const model = useGLTF(
-    '3dmodels/marble_bust_01_2k.gltf/marble_bust_01_2k.gltf'
+    "3dmodels/marble_bust_01_2k.gltf/marble_bust_01_2k.gltf"
   );
   return (
     <>
@@ -16,4 +16,4 @@ export default function Model({ scale }: ModelProps) {
   );
 }
 
-useGLTF.preload('3dmodels/marble_bust_01_2k.gltf/marble_bust_01_2k.gltf');
+useGLTF.preload("3dmodels/marble_bust_01_2k.gltf/marble_bust_01_2k.gltf");

@@ -9,7 +9,7 @@ export default async function Home() {
   let href = userId ? "/journal" : "/new-user";
 
   return (
-    <div className="flex w-screen h-screen flex-col items-center justify-between p-24 bg-[#150c28]">
+    <div className="flex w-screen h-screen flex-col items-center justify-between pt-52 p-24 bg-[#150c28]">
       <div className="flex w-[1080px] h-[720px] shadow-glow">
         <Experience />
         <div className="w-1/2 flex flex-col justify-center items-start text-white space-y-4 p-8">
