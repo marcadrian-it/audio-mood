@@ -60,7 +60,7 @@ const Recorder = ({ setText }: RecorderProps) => {
     });
     const formData = new FormData();
     formData.append("audio", audioBlob);
-    fetch("http://localhost:3010/transcribe", {
+    fetch("https://audio-mood-ca8d3ece5db9.herokuapp.com/transcribe", {
       method: "POST",
       body: formData,
     })

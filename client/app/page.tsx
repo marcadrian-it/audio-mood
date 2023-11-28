@@ -1,5 +1,5 @@
 import Experience from "../components/Experience";
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 

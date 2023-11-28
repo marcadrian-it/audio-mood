@@ -3,6 +3,10 @@ const createURL = (path: string) => {
 };
 
 export const updateEntry = async (id: string, content: string) => {
+  console.log("Start updateEntry");
+  console.log("ID:", id);
+  console.log("Content:", content);
+
   try {
     const res = await fetch(
       new Request(createURL(`/api/journal/${id}`), {
@@ -13,14 +17,19 @@ export const updateEntry = async (id: string, content: string) => {
         body: JSON.stringify({ content }),
       })
     );
+    console.log("Response status:", res.status);
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
     const data = await res.json();
-    data.analysis.color = JSON.stringify(data.analysis.color);
+    console.log("Response data:", data);
 
+    data.analysis.color = JSON.stringify(data.analysis.color);
+    console.log("Color string:", data.analysis.color);
+
+    console.log("End updateEntry");
     return {
       data: data.data,
       analysis: data.analysis,
