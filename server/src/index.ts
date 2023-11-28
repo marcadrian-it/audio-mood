@@ -8,6 +8,7 @@ import url from 'url';
 import { exec as execCb } from 'child_process';
 
 const app = express();
+const port = process.env.PORT || 3010;
 const exec = util.promisify(execCb);
 // Define paths
 const __filename = url.fileURLToPath(import.meta.url);
@@ -16,9 +17,13 @@ const paths = {
   exec: path.join(__dirname, './whisper.cpp/main'),
   model: path.join(__dirname, './whisper.cpp/models/ggml-tiny.en.bin'),
 };
+const corsOptions = {
+  origin: 'https://audio-mood.cloud',
+  optionsSuccessStatus: 200,
+};
 const command = `${paths.exec} -m ${paths.model} -f output.wav -otxt -of output`;
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 const storage = multer.diskStorage({
   destination: 'uploads/',
@@ -57,11 +62,11 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
   res.status(200).send(body);
 });
 
-const server = app.listen(3010, () => {
-  console.log('Server is running on port 3010');
+const server = app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-server.timeout = 180000;
+server.timeout = 0;
 
 process.on('SIGTERM', () => {
   console.log('SIGTERM signal received. Closing HTTP server.');

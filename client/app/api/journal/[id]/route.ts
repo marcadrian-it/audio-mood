@@ -11,8 +11,13 @@ export const PATCH = async (
   request: Request,
   { params }: { params: Params }
 ) => {
+  console.log("Start PATCH");
   const { content } = await request.json();
+  console.log("Content:", content);
+
   const user = await getUserByClerkID();
+  console.log("User:", user);
+
   const updatedEntry = await prisma.journalEntry.update({
     where: {
       userId_id: {
@@ -24,13 +29,16 @@ export const PATCH = async (
       content: content,
     },
   });
+  console.log("Updated entry:", updatedEntry);
 
-  //Store color as a string in the database
   const analysis = await analyze(updatedEntry.content);
+  console.log("Analysis:", analysis);
+
   let colorString = "[]";
   if (analysis && analysis.color) {
     colorString = JSON.stringify(analysis.color);
   }
+  console.log("Color string:", colorString);
 
   await prisma.analysis.upsert({
     where: {
@@ -44,6 +52,8 @@ export const PATCH = async (
     },
     update: { ...analysis, color: colorString },
   });
+  console.log("Upserted analysis");
 
+  console.log("End PATCH");
   return NextResponse.json({ data: updatedEntry, analysis: analysis });
 };
