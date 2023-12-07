@@ -30,21 +30,21 @@ const EntryCard = ({ entry }: EntryCardProps) => {
   return (
     <div
       data-testid="entry-card"
-      className={`hover:border-[8px] hover:border-blue-600/70 overflow-hidden rounded-lg shadow-xl text-black font-semibold relative border-[6px] border-blue-500/40 h-64 duration-100 ease-in-out`}
+      className={`hover:border-[4px] hover:border-[#1d113a] overflow-hidden rounded-lg shadow-xl text-black font-semibold relative border-[3px] border-black h-64 duration-100 ease-in-out flex flex-col items-start justify-center pl-4 gap-2`}
       style={{ background: `${gradient}` }}
     >
-      <div className="relative z-10 mt-3">
-        <span className="px-4 py-1 bg-black text-xs rounded-xl text-white font-medium ms-2">
-          {date}
-        </span>
-        <div className="px-4 py-5 bg-clip-text text-transparent bg-gradient-to-r from-black to-black/90 text-2xl font-extrabold">
-          {entry.analysis?.summary}
-        </div>
-        <div className="px-4 py-4 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-500 text-2xl font-extrabold text-center">
-          {entry.analysis?.mood}
-        </div>
+      <span className="px-4 py-1 bg-black text-xs rounded-xl text-white font-medium ">
+        {date}
+      </span>
+      <div className="px-4 py-3 text-2xl font-extrabold bg-white hover:bg-white/80 duration-100 ease-in-out rounded-xl border-black border-[2px] mt-4 ms-2 me-2">
+        {entry.analysis?.summary}
       </div>
-      <div className="absolute inset-0 bg-white bg-opacity-30 pointer-events-none blur-sm" />
+      <div className="w-full flex justify-center mt-2">
+        <span className="px-4 py-1 text-medium font-bold text-center bg-white rounded-[50px] border-black border-[2px] ms-2 hover:bg-white/80 duration-100 ease-in-out">
+          {entry.analysis?.mood}
+        </span>
+      </div>
+      <div className="absolute inset-0 bg-white bg-opacity-0 pointer-events-none blur-sm" />
     </div>
   );
 };
