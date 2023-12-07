@@ -30,15 +30,17 @@ const EntryCard = ({ entry }: EntryCardProps) => {
   return (
     <div
       data-testid="entry-card"
-      className={`hover:border-[8px] hover:border-blue-600/70 overflow-hidden rounded-lg shadow-xl text-black font-semibold relative border-[6px] border-blue-500/40 h-64 duration-300 ease-in-out`}
+      className={`hover:border-[8px] hover:border-blue-600/70 overflow-hidden rounded-lg shadow-xl text-black font-semibold relative border-[6px] border-blue-500/40 h-64 duration-100 ease-in-out`}
       style={{ background: `${gradient}` }}
     >
-      <div className="relative z-10">
-        <div className="px-4 py-5 font-extrabold">{date}</div>
+      <div className="relative z-10 mt-3">
+        <span className="px-4 py-1 bg-black text-xs rounded-xl text-white font-medium ms-2">
+          {date}
+        </span>
         <div className="px-4 py-5 bg-clip-text text-transparent bg-gradient-to-r from-black to-black/90 text-2xl font-extrabold">
           {entry.analysis?.summary}
         </div>
-        <div className="px-4 py-4 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-500 text-2xl font-extrabold">
+        <div className="px-4 py-4 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-500 text-2xl font-extrabold text-center">
           {entry.analysis?.mood}
         </div>
       </div>
