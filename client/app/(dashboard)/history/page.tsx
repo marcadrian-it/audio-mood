@@ -48,7 +48,7 @@ const History = async () => {
             <span className="text-green-500">10</span>
           </div>
           <div
-            className="absolute top-0 left-0 h-3 w-3 rounded-full bg-gray-500 shadow-md border-2 border-white"
+            className="absolute top-0 left-0 h-3 w-3 rounded-full bg-[#8884d8] shadow-md border-2 border-white"
             style={{
               left: `${((avg + 10) / 20) * 100}%`,
             }}
