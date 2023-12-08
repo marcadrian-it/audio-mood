@@ -55,7 +55,7 @@ const History = async () => {
           />
         </div>
         {avg ? (
-          <p className="text-white mt-2 text-center">Averge: {avg}</p>
+          <p className="text-white mt-2 text-center">Average: {avg}</p>
         ) : (
           <p className="text-gray-500 mt-2 text-center">
             Your journal entries have not been analyzed yet.
