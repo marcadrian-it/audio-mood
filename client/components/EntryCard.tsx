@@ -36,11 +36,19 @@ const EntryCard = ({ entry }: EntryCardProps) => {
       <span className="px-4 py-1 bg-black text-xs rounded-xl text-white font-medium ">
         {date}
       </span>
-      <div className="px-4 py-3 text-2xl font-extrabold bg-white hover:bg-white/80 duration-100 ease-in-out rounded-xl border-black border-[2px] mt-4 ms-2 me-2">
+      <div
+        className={`px-4 py-3 text-2xl font-extrabold bg-white hover:bg-white/80 duration-100 ease-in-out rounded-xl ${
+          entry.analysis?.summary ? "border-black border-[2px]" : ""
+        } mt-4 ms-2 me-2`}
+      >
         {entry.analysis?.summary}
       </div>
       <div className="w-full flex justify-center mt-2">
-        <span className="px-4 py-1 text-medium font-bold text-center bg-white rounded-[50px] border-black border-[2px] ms-2 hover:bg-white/80 duration-100 ease-in-out">
+        <span
+          className={`px-4 py-1 text-medium font-bold text-center bg-white rounded-[50px] ${
+            entry.analysis?.mood ? "border-black border-[2px]" : ""
+          } ms-2 hover:bg-white/80 duration-100 ease-in-out`}
+        >
           {entry.analysis?.mood}
         </span>
       </div>
