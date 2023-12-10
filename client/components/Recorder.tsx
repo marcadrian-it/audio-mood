@@ -106,24 +106,24 @@ const Recorder = ({ setText }: RecorderProps) => {
           found.
         </div>
       ) : (
-        <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+        <div className="z-10 max-w-5xl w-full items-center justify-between text-sm lg:flex">
           <button
             onClick={startRecording}
             disabled={isRecording}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:bg-red-600 disabled:cursor-not-allowed"
+            className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded disabled:opacity-50 disabled:bg-red-600 disabled:cursor-not-allowed hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
           >
             Start Recording
           </button>
           <button
             onClick={stopRecording}
             disabled={!isRecording}
-            className="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:hover:bg-blue-500 disabled:cursor-not-allowed"
+            className="bg-blue-500 hover:bg-red-700 text-white text-sm font-semibold py-2 px-4 rounded disabled:opacity-50 disabled:hover:bg-blue-500 disabled:cursor-not-allowed hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
           >
             Stop Recording
           </button>
           <button
             onClick={transcribeAudio}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled"
+            className="bg-blue-500 hover:bg-blue-700 text-sm text-white font-semibold py-2 px-4 rounded disabled hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
           >
             Transcribe Audio
           </button>
