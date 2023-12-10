@@ -21,7 +21,7 @@ export default async function Home() {
             life.
           </p>
           <Link href={href}>
-            <button className="text-lg bg-blue-500 px-3 py-2 rounded-xl">
+            <button className="text-lg bg-blue-500 px-3 py-2 rounded-xl hover:scale-105 hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out transform">
               start now
             </button>
           </Link>

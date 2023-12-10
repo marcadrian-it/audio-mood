@@ -7,7 +7,7 @@ interface ModelProps {
 
 export default function Model({ scale }: ModelProps) {
   const model = useGLTF(
-    "3dmodels/marble_bust_01_2k.gltf/marble_bust_01_2k.gltf"
+    "3dmodels/marble_bust_01_1k.gltf/marble_bust_01_1k.gltf"
   );
   return (
     <>
@@ -16,4 +16,4 @@ export default function Model({ scale }: ModelProps) {
   );
 }
 
-useGLTF.preload("3dmodels/marble_bust_01_2k.gltf/marble_bust_01_2k.gltf");
+useGLTF.preload("3dmodels/marble_bust_01_1k.gltf/marble_bust_01_1k.gltf");

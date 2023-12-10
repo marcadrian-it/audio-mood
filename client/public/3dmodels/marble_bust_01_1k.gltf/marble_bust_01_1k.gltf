@@ -7,14 +7,20 @@
   "scenes": [
     {
       "name": "Scene",
-      "nodes": [0]
+      "nodes": [
+        0
+      ]
     }
   ],
   "nodes": [
     {
       "mesh": 0,
       "name": "marble_bust_01",
-      "translation": [0, 0.028335653245449066, 0]
+      "translation": [
+        0,
+        0.028335653245449066,
+        0
+      ]
     }
   ],
   "materials": [
@@ -69,17 +75,17 @@
     {
       "mimeType": "image/jpeg",
       "name": "marble_bust_01_nor_gl",
-      "uri": "textures/marble_bust_01_nor_gl_2k.jpg"
+      "uri": "textures/marble_bust_01_nor_gl_1k.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "marble_bust_01_diff",
-      "uri": "textures/marble_bust_01_diff_2k.jpg"
+      "uri": "textures/marble_bust_01_diff_1k.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "marble_bust_01_arm",
-      "uri": "textures/marble_bust_01_rough_2k.jpg"
+      "uri": "textures/marble_bust_01_rough_1k.jpg"
     }
   ],
   "accessors": [
@@ -87,8 +93,16 @@
       "bufferView": 0,
       "componentType": 5126,
       "count": 9746,
-      "max": [0.14886942505836487, 0.48668384552001953, 0.1551172435283661],
-      "min": [-0.12288019061088562, -0.028259359300136566, -0.1445964276790619],
+      "max": [
+        0.14886942505836487,
+        0.48668384552001953,
+        0.1551172435283661
+      ],
+      "min": [
+        -0.12288019061088562,
+        -0.028259359300136566,
+        -0.1445964276790619
+      ],
       "type": "VEC3"
     },
     {
