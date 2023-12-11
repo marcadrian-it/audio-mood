@@ -49,3 +49,21 @@ export const PATCH = async (
 
   return NextResponse.json({ data: updatedEntry, analysis: analysis });
 };
+
+export const DELETE = async (
+  request: Request,
+  { params }: { params: Params }
+) => {
+  const user = await getUserByClerkID();
+
+  const deletedEntry = await prisma.journalEntry.delete({
+    where: {
+      userId_id: {
+        userId: user.id,
+        id: params.id,
+      },
+    },
+  });
+
+  return NextResponse.json({ data: deletedEntry });
+};

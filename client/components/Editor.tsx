@@ -1,9 +1,10 @@
 "use client";
-import { updateEntry } from "@/utils/api";
+import { updateEntry, deleteEntry } from "@/utils/api";
 import { useState } from "react";
 import { useAutosave } from "react-autosave";
 import Spinner from "./Spinner";
 import Recorder from "./Recorder";
+import { useRouter } from "next/navigation";
 
 interface Analysis {
   id: string;
@@ -30,10 +31,16 @@ interface EditorProps {
 }
 
 const Editor = ({ entry }: EditorProps) => {
+  const router = useRouter();
   const [text, setText] = useState(entry.content);
   const [currentEntry, setEntry] = useState(entry);
   const [isSaving, setIsSaving] = useState(false);
 
+  const deleteCurrentEntry = async () => {
+    await deleteEntry(currentEntry.id);
+    router.push("/journal");
+    router.refresh();
+  };
   let colorArray = ["#ffffff", "#ffffff"];
   if (currentEntry?.analysis?.color) {
     colorArray = JSON.parse(currentEntry.analysis.color);
@@ -116,7 +123,8 @@ const Editor = ({ entry }: EditorProps) => {
             <li className="py-4 px-8 flex items-center justify-between">
               <button
                 type="button"
-                className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-900 hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
+                className="rounded-xl bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-900 hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
+                onClick={deleteCurrentEntry}
               >
                 Delete
               </button>
