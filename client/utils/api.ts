@@ -41,6 +41,38 @@ export const updateEntry = async (id: string, content: string) => {
   }
 };
 
+export const deleteEntry = async (id: string) => {
+  try {
+    const res = await fetch(
+      new Request(createURL(`/api/journal/${id}`), {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    );
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    return {
+      data: null,
+      error: null,
+      code: res.status,
+      messageForUI: "Entry deleted successfully.",
+    };
+  } catch (error: any) {
+    console.error("An error occurred while deleting the entry:", error);
+    return {
+      data: null,
+      error: error.message,
+      code: error.status || 500,
+      messageForUI: "An error occurred while deleting the entry.",
+    };
+  }
+};
+
 export const createNewEntry = async () => {
   try {
     const res = await fetch(
