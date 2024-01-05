@@ -54,6 +54,7 @@ const Editor = ({ entry }: EditorProps) => {
       setIsSaving(true);
 
       const { data, analysis } = await updateEntry(entry.id, _text);
+      router.refresh();
       if (analysis) {
         data.analysis = analysis;
       }
