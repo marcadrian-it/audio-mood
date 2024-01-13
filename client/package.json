@@ -14,7 +14,7 @@
     "schema": "./prisma/schema.prisma"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.27.2",
+    "@clerk/nextjs": "^4.29.3",
     "@clerk/themes": "^1.7.9",
     "@prisma/client": "^5.6.0",
     "@react-three/drei": "^9.88.11",
