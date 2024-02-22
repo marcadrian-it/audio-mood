@@ -55,7 +55,7 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
   await fs.unlink(req!.file!.path);
   await fs.unlink('output.wav');
 
-  let body = {
+  const body = {
     transcription: transcription.trim(),
     stdout: stdout.trim(),
   };
