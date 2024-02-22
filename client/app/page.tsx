@@ -1,12 +1,12 @@
 import Experience from "../components/Experience";
-import React, { Suspense } from "react";
+import React from "react";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 
 export default async function Home() {
   const { userId } = await auth();
 
-  let href = userId ? "/journal" : "/new-user";
+  const href = userId ? "/journal" : "/new-user";
 
   return (
     <div className="flex w-screen h-screen flex-col items-center justify-between pt-52 p-24 bg-[#150c28]">

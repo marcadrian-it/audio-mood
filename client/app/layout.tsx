@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
