@@ -44,6 +44,33 @@ To visit the website, click on the logo.
 
 ## Instructions
 
+In the project directory, you can run:
+
+`npm run dev` -
+
+Runs the app in the development mode.\
+
+`npm run build` -
+
+Builds the app for production to the `.next` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+`npm run start` -
+
+Starts the application in production mode. The application should be compiled with `npm run build` first.
+
+`npm run lint` -
+
+Runs the linter to check for any syntax errors or issues.
+
+`npm run test` -
+
+Launches the test runner in the interactive watch mode.
+
+`npm run test:coverage` -
+
+Runs the tests and outputs a coverage report.
+
 ## Preview
 
 ![Preview](https://raw.githubusercontent.com/marcadrian-it/audio-mood/master/preview.jpg)
