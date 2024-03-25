@@ -1,8 +1,18 @@
 "use client";
 
-import { PresentationControls } from "@react-three/drei";
+import { Html, PresentationControls, useProgress } from "@react-three/drei";
 import Model from "./Model";
 import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center className="text-white">
+      {progress} % loaded
+    </Html>
+  );
+}
 
 export default function Experience() {
   return (
@@ -27,7 +37,9 @@ export default function Experience() {
           config={{ mass: 2, tension: 100 }}
           snap={{ mass: 4, tension: 400 }}
         >
-          <Model scale={8} />
+          <Suspense fallback={<Loader />}>
+            <Model scale={8} />
+          </Suspense>
         </PresentationControls>
       </Canvas>
     </>

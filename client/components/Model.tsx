@@ -7,11 +7,7 @@ interface ModelProps {
 
 export default function Model({ scale }: ModelProps) {
   const model = useGLTF("3dmodels/marble_bust_01_1k.gltf/modelDraco.gltf");
-  return (
-    <>
-      <Clone object={model.scene} scale={scale} position-y={-2} />
-    </>
-  );
+  return <Clone object={model.scene} scale={scale} position-y={-2} />;
 }
 
 useGLTF.preload("3dmodels/marble_bust_01_1k.gltf/modelDraco.gltf");
