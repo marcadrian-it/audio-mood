@@ -19,7 +19,7 @@ const Question = () => {
     setIsLoading(false);
   };
   return (
-    <div data-testid="question">
+    <div data-testid="question" className="text-black">
       <form onSubmit={handleSubmit}>
         <input
           disabled={isLoading}
@@ -32,7 +32,7 @@ const Question = () => {
         <button
           disabled={isLoading}
           type="submit"
-          className="bg-blue-500 px-4 py-2 rounded-lg text-lg  hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out transform"
+          className="bg-blue-500 px-4 py-2 rounded-lg text-lg text-white  hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out transform"
         >
           Ask
         </button>
