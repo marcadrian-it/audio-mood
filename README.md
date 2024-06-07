@@ -1,6 +1,5 @@
 # Audio-mood
 
-<b> Requires migration since planetscale ended their regional hobby plan support </b><br/>
 An AI-powered web app that captures your thoughts and emotions through audio journaling 🎙️✨
 
 To visit the website, click on the logo.
