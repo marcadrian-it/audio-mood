@@ -20,7 +20,7 @@ To visit the website, click on the logo.
 - [Typescript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
-- [PlanetScale](https://planetscale.com/)
+- [Turso](https://turso.tech/)
 - [Vercel](https://vercel.com/)
 
 ## Shared
