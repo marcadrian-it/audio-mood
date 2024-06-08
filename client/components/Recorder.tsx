@@ -7,7 +7,7 @@ interface RecorderProps {
 }
 const Recorder = ({ setText }: RecorderProps) => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
-    null
+    null,
   );
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
@@ -76,7 +76,7 @@ const Recorder = ({ setText }: RecorderProps) => {
         const timestamps = [];
         for (let sentence of sentences) {
           const match = sentence.match(
-            /\[([0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}) --> ([0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3})\]\s*(.*)/
+            /\[([0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}) --> ([0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3})\]\s*(.*)/,
           );
           if (match) {
             const startTime = match[1];
@@ -109,6 +109,7 @@ const Recorder = ({ setText }: RecorderProps) => {
         <div className="z-10 max-w-5xl w-full items-center justify-between text-sm lg:flex">
           <button
             onClick={startRecording}
+            onTouchStart={startRecording}
             disabled={isRecording}
             className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded-xl disabled:opacity-50 disabled:bg-red-600 disabled:cursor-not-allowed hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
           >
@@ -116,6 +117,7 @@ const Recorder = ({ setText }: RecorderProps) => {
           </button>
           <button
             onClick={stopRecording}
+            onTouchStart={stopRecording}
             disabled={!isRecording}
             className="bg-blue-500 hover:bg-red-700 text-white text-sm font-semibold py-2 px-4 rounded-xl disabled:opacity-50 disabled:hover:bg-blue-500 disabled:cursor-not-allowed hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
           >
@@ -123,6 +125,7 @@ const Recorder = ({ setText }: RecorderProps) => {
           </button>
           <button
             onClick={transcribeAudio}
+            onTouchStart={transcribeAudio}
             className="bg-blue-500 hover:bg-blue-700 text-sm text-white font-semibold py-2 px-4 rounded-xl disabled hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out transform"
           >
             Transcribe Audio
