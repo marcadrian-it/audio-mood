@@ -16,7 +16,9 @@
   "dependencies": {
     "@clerk/nextjs": "^4.29.3",
     "@clerk/themes": "^1.7.9",
-    "@prisma/client": "^5.6.0",
+    "@libsql/client": "^0.6.2",
+    "@prisma/adapter-libsql": "^5.15.0",
+    "@prisma/client": "^5.15.0",
     "@react-three/drei": "^9.88.11",
     "@react-three/fiber": "^8.15.9",
     "@types/node": "^20.10.0",
@@ -47,7 +49,7 @@
     "eslint-config-next": "^14.1.0",
     "jsdom": "^22.1.0",
     "node-mocks-http": "^1.13.0",
-    "prisma": "^5.6.0",
+    "prisma": "^5.15.0",
     "resize-observer-polyfill": "^1.5.1",
     "vitest": "^0.34.6"
   }

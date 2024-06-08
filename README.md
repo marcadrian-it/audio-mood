@@ -31,7 +31,7 @@ To visit the website, click on the logo.
 
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
-- [PlanetScale](https://planetscale.com/)
+- [Turso](https://turso.tech/)
 - [Docker](https://www.docker.com/)
 - [Multer](https://www.npmjs.com/package/multer)
 
