@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { AudioMoodAwsStack } from '../lib/audio-mood_aws-stack';
+import { ServerStack } from '../lib/server-stack';
 
 const app = new cdk.App();
-new AudioMoodAwsStack(app, 'AudioMoodAwsStack', {
+new ServerStack(app, 'ServerStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

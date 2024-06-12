@@ -1,13 +1,13 @@
 // import * as cdk from 'aws-cdk-lib';
 // import { Template } from 'aws-cdk-lib/assertions';
-// import * as AudioMoodAws from '../lib/audio-mood_aws-stack';
+// import * as Server from '../lib/server-stack';
 
 // example test. To run these tests, uncomment this file along with the
-// example resource in lib/audio-mood_aws-stack.ts
+// example resource in lib/server-stack.ts
 test('SQS Queue Created', () => {
 //   const app = new cdk.App();
 //     // WHEN
-//   const stack = new AudioMoodAws.AudioMoodAwsStack(app, 'MyTestStack');
+//   const stack = new Server.ServerStack(app, 'MyTestStack');
 //     // THEN
 //   const template = Template.fromStack(stack);
 
