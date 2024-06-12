@@ -1,0 +1,19 @@
+{
+  "name": "uploader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1640.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-sdk": "^2.7.0"
+  }
+}

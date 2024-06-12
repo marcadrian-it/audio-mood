@@ -11,7 +11,11 @@ export class ServerStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const bucket = new s3.Bucket(this, "AudioMoodBucket");
+    const bucket = new s3.Bucket(this, "AudioMoodBucket", {
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      autoDeleteObjects: true,
+    });
 
     const queue = new sqs.Queue(this, "AudioMoodServerQueue", {
       visibilityTimeout: cdk.Duration.seconds(300),
@@ -33,22 +37,22 @@ export class ServerStack extends cdk.Stack {
     bucket.grantReadWrite(uploaderLambda);
     queue.grantSendMessages(uploaderLambda);
 
-    const repo = ecr.Repository.fromRepositoryArn(
-      this,
-      "AudioMoodProcessorRepo",
-      "arn:aws:ecr:<region>:<account-id>:repository/my-processor-repo",
-    );
-
-    const processorLambda = new lambda.DockerImageFunction(
-      this,
-      "AudioMoodProcessorLambda",
-      {
-        code: lambda.DockerImageCode.fromEcr(repo),
-      },
-    );
-
-    processorLambda.addEventSource(new sqsEventSources.SqsEventSource(queue));
-    bucket.grantRead(processorLambda);
+    // const repo = ecr.Repository.fromRepositoryArn(
+    //   this,
+    //   "AudioMoodProcessorRepo",
+    //   "arn:aws:ecr:<region>:<account-id>:repository/my-processor-repo",
+    // );
+    //
+    // const processorLambda = new lambda.DockerImageFunction(
+    //   this,
+    //   "AudioMoodProcessorLambda",
+    //   {
+    //     code: lambda.DockerImageCode.fromEcr(repo),
+    //   },
+    // );
+    //
+    // processorLambda.addEventSource(new sqsEventSources.SqsEventSource(queue));
+    // bucket.grantRead(processorLambda);
 
     const api = new apigateway.RestApi(this, "AudioMoodApi", {
       restApiName: "Transcription Service",
