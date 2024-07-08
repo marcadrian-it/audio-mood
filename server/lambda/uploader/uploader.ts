@@ -35,11 +35,13 @@ export const handler: APIGatewayProxyHandler = async (
       statusCode: 200,
       body: JSON.stringify({ uploadUrl: signedUrl }),
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: `Failed to generate upload URL: ${error.message}`,
+        message: `Failed to generate upload URL: ${errorMessage}`,
       }),
     };
   }
