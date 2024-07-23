@@ -1,25 +1,51 @@
-FROM node:20-bookworm-slim
+# Stage 1: Build whisper.cpp
+FROM node:20-bookworm-slim AS whisper-builder
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
     bash git make wget g++
 
+WORKDIR /whisper
 
+RUN git clone https://github.com/ggerganov/whisper.cpp.git . && \
+    bash ./models/download-ggml-model.sh tiny.en && \
+    make && chmod +x main
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+# Stage 2: Build Node.js application
+FROM node:20-bookworm-slim AS node-builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+# Stage 3: Final image
+FROM node:20-bookworm-slim
+
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
+    bash libgomp1 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /home/node/app
 
-COPY --chown=node:node package*.json ./
+COPY --from=node-builder /app/package*.json ./
+COPY --from=whisper-builder /whisper/main /home/node/app/src/whisper.cpp/main
+COPY --from=whisper-builder /whisper/models/ggml-tiny.en.bin /home/node/app/src/whisper.cpp/models/
+COPY --from=node-builder /app/dist ./dist
+COPY --from=node-builder /app/node_modules ./node_modules
+
+COPY src/config.json /home/node/app/dist/config.json
+
+COPY healthcheck.js /home/node/app/healthcheck.js
+
 USER node
 
-RUN git clone https://github.com/ggerganov/whisper.cpp.git src/whisper.cpp
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD node /home/node/app/healthcheck.js
 
-COPY --chown=node:node . .
-RUN npm install && npm run build
 
-WORKDIR /home/node/app/src/whisper.cpp
-RUN bash ./models/download-ggml-model.sh tiny.en
-RUN make && chmod +x main && ldd main
-WORKDIR /home/node/app
+CMD ["node", "./dist/worker.js"]
 
-EXPOSE 3010
-CMD [ "node", "./dist/worker.js" ]

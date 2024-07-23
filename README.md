@@ -30,10 +30,13 @@ To visit the website, click on the logo.
 ## Backend
 
 - [Node.js](https://nodejs.org/en/)
-- [Express](https://expressjs.com/)
 - [Turso](https://turso.tech/)
 - [Docker](https://www.docker.com/)
-- [Multer](https://www.npmjs.com/package/multer)
+- [AWS S3](https://aws.amazon.com/s3/)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+- [AWS SQS](https://aws.amazon.com/sqs/)
+- [AWS API Gateway](https://aws.amazon.com/api-gateway/)
+- [AWS ECR](https://aws.amazon.com/ecr/)
 
 ## Frontend
 

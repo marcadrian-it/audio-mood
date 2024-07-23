@@ -1,0 +1,5 @@
+{
+  "model": "tiny",
+  "execPath": "./whisper.cpp/main",
+  "modelPathTemplate": "./whisper.cpp/models/ggml-{model}.en.bin"
+}
