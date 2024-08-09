@@ -2,16 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import JournalIdPage from "@/app/(dashboard)/journal/[id]/page";
 
-vi.mock("@/components/Recorder", () => {
-  return {
-    __esModule: true,
-    default: () => {
-      return <div>Mock Recorder</div>;
-    },
-  };
-});
-
-// Create a mock for auth and prisma
 const mocks = vi.hoisted(() => {
   return {
     getUserMedia: vi.fn(),
@@ -39,11 +29,20 @@ vi.mock("@/utils/db", () => {
   };
 });
 
-const mockUser = {
+vi.mock("@/components/Recorder", () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return <div>Mock Recorder</div>;
+    },
+  };
+});
+
+const user = {
   id: "user_1",
 };
 
-const mockEntry = {
+const entry = {
   id: "entry_1",
   createdAt: new Date(),
   updatedAt: new Date(),
@@ -60,8 +59,8 @@ beforeEach(() => {
 
 test("JournalIdPage with entry", async () => {
   mocks.auth.mockResolvedValue({ userId: "user_1" });
-  mocks.prisma.user.findUniqueOrThrow.mockResolvedValueOnce(mockUser);
-  mocks.prisma.journalEntry.findUnique.mockResolvedValueOnce(mockEntry);
+  mocks.prisma.user.findUniqueOrThrow.mockResolvedValueOnce(user);
+  mocks.prisma.journalEntry.findUnique.mockResolvedValueOnce(entry);
 
   render(await JournalIdPage({ params: { id: "entry_1" } }));
   expect(screen.getByText("Content 1")).toBeTruthy();
@@ -69,7 +68,8 @@ test("JournalIdPage with entry", async () => {
 
 test("JournalIdPage without an entry", async () => {
   mocks.auth.mockResolvedValue({ userId: "user_1" });
-  mocks.prisma.user.findUniqueOrThrow.mockResolvedValueOnce(mockUser);
+  mocks.prisma.user.findUniqueOrThrow.mockResolvedValueOnce(user);
   mocks.prisma.journalEntry.findUnique.mockResolvedValueOnce(null);
   render(await JournalIdPage({ params: { id: "entry_1" } }));
+  expect(screen.getByText("Entry not found")).toBeTruthy();
 });
