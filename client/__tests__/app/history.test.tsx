@@ -83,12 +83,12 @@ describe("HistoryPage", () => {
     render(await History());
 
     // Check if the average sentiment is displayed correctly
-    const avgSentimentElement = await screen.findByText(/Avg\. Sentiment \d+/);
+    const avgSentimentElement = await screen.findByText(/Average: \d+/);
     expect(avgSentimentElement?.textContent).not.toBeNull();
 
     // Check if the correct average sentiment value is displayed
     const avgSentimentValue = parseFloat(
-      avgSentimentElement?.textContent?.match(/-?\d+(\.\d+)?/)?.[0] || "0"
+      avgSentimentElement?.textContent?.match(/-?\d+(\.\d+)?/)?.[0] || "0",
     );
 
     const expectedAvgSentiment =
