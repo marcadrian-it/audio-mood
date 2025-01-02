@@ -14,7 +14,7 @@
     "schema": "./prisma/schema.prisma"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.3",
+    "@clerk/nextjs": "^6.9.6",
     "@clerk/themes": "^1.7.9",
     "@libsql/client": "^0.6.2",
     "@prisma/adapter-libsql": "^5.15.0",
